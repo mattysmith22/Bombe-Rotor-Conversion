@@ -10,15 +10,16 @@ namespace BombeRotorConversion
     {
         static void Main(string[] args)
         {
-            int valueIn;
+            long valueIn;
 
             while(true)
             {
                 Console.Write("Base 10 value in: ");
 
-                if(int.TryParse(Console.ReadLine(), out valueIn))
+                if(long.TryParse(Console.ReadLine(), out valueIn))
                 {
-                    Console.WriteLine(Converter.GenerateLetterString(valueIn));
+                    Console.Clear();
+                    Console.WriteLine(Converter.GenerateLetterString(valueIn, true));
                 }
             }
         }

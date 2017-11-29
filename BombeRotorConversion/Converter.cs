@@ -10,7 +10,23 @@ namespace BombeRotorConversion
     {
         private static string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        public static string GenerateLetterString(int input)
+        private static string wheel = "|/-\\|/-\\";
+
+        private static void PrintRotors(byte[] values)
+        {
+            string outString = "";
+
+            foreach (byte i in values)
+            {
+                outString = wheel[i % (wheel.Length - 1)] + outString;
+            }
+
+            Console.SetCursorPosition(0, 0);
+
+            Console.WriteLine(outString);
+        }
+
+        public static string GenerateLetterString(long input, bool shouldPrintRotors = false)
         {
             string outString = "";
 
@@ -23,7 +39,7 @@ namespace BombeRotorConversion
 
             byte[] letterValues = new byte[numOfChars];
 
-            for (int n = 0; n < input; n++)
+            for (long n = 0; n < input; n++)
             {
                 letterValues[0] += 1;
 
@@ -34,6 +50,11 @@ namespace BombeRotorConversion
                         letterValues[i] = 1;
                         letterValues[i+1] += 1;
                     }
+                }
+
+                if (shouldPrintRotors)
+                {
+                    PrintRotors(letterValues);
                 }
             }
 
